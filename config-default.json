@@ -1,0 +1,9 @@
+{
+    "guildID": "",
+    "projectID": "",
+    "token": "",
+    "inviteID": "",
+    "roleIDs": [ ],
+    "dumpRoleIDs": false,
+    "debug": false
+}
