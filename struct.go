@@ -10,11 +10,12 @@ type InviteMetadata struct {
 
 // Configuration object for application.
 type Configuration struct {
-	GuildID     string   `json:"guildID"`
-	ProjectID   string   `json:"projectID"`
-	Token       string   `json:"token"`
-	InviteID    string   `json:"inviteID"`
-	RoleIDs     []string `json:"roleIDs"`
-	DumpRoleIDs bool     `json:"dumpRoleIDs"`
-	Debug       bool     `json:"debug"`
+	GuildID       string   `json:"guildID"`
+	ProjectID     string   `json:"projectID"`
+	Token         string   `json:"token"`
+	InviteID      string   `json:"inviteID"`
+	RoleIDs       []string `json:"roleIDs"`
+	DumpRoleIDs   bool     `json:"dumpRoleIDs"`
+	Debug         bool     `json:"debug"`
+	NotifyChannel string   `json:"notifyChannel"`
 }

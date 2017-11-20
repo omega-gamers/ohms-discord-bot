@@ -7,9 +7,7 @@ import (
 	"cloud.google.com/go/datastore"
 )
 
-const (
-	metadata string = "metadata"
-)
+const metadata string = "metadata"
 
 var (
 	ctx    context.Context
@@ -34,7 +32,7 @@ func updateInviteMetadata(projectID string, guildID string, data *InviteMetadata
 	metadataKey := getInviteMetadataKey(projectID, guildID)
 
 	if _, err := client.Put(ctx, metadataKey, data); err != nil {
-		log.Fatalf("Failed to save task: %v", err)
+		log.Fatalf("Failed to save inviteMetadata: %v", err)
 	}
 }
 

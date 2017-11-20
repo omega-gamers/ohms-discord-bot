@@ -1,15 +1,15 @@
 package main
 
 import (
-	"fmt"
+	"log"
 
-	"github.com/omega-gamers/discordgo"
+	"github.com/bwmarrin/discordgo"
 )
 
 func getInviteMetadata(inviteID string, discord *discordgo.Session) (im *InviteMetadata) {
 	invite, err := discord.Invite(inviteID)
 	if err != nil {
-		fmt.Println("Failed to retrieve guild invite information.", err)
+		log.Println("Failed to retrieve guild invite information.", err)
 		return
 	}
 
