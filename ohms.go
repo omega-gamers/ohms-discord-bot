@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"io/ioutil"
 	"log"
 	"os"
@@ -16,14 +17,18 @@ func init() {
 	configure()
 }
 
-// Config file to load from
-const configFile = "./config.json"
-
 // Global config object
-var config *Configuration
+var (
+	config *Configuration
+	debug  bool
+)
 
 // configure is a helper function that reads in the external config file.
 func configure() {
+	var configFile string
+	flag.StringVar(&configFile, "c", "/usr/local/etc/ohms-discord-bot.d/config.json", "Config file")
+	flag.BoolVar(&debug, "d", false, "Debug mode")
+
 	if content, err := ioutil.ReadFile(configFile); err != nil {
 		log.Fatalf("Failed to load configuration file: %v. Terminating...", configFile)
 	} else {
@@ -77,7 +82,7 @@ func main() {
 // Temporary event handler to report bot status
 func reportReady(s *discordgo.Session, event *discordgo.Ready) {
 	// If debug mode is not enabled, do nothing.
-	if !config.Debug {
+	if !debug {
 		return
 	}
 	channelID := config.NotifyChannel
@@ -89,7 +94,7 @@ func reportReady(s *discordgo.Session, event *discordgo.Ready) {
 
 func informServerOfShutdown(discord *discordgo.Session) {
 	// If debug mode is not enabled, do nothing.
-	if !config.Debug {
+	if !debug {
 		return
 	}
 	channelID := config.NotifyChannel
@@ -113,7 +118,7 @@ func processNewUsers(s *discordgo.Session, event *discordgo.GuildMemberAdd) {
 		user := event.Member.User
 		userID := user.ID
 		// If debug is enable, notify the admins of a user being promoted
-		if config.Debug {
+		if debug {
 			channelID := config.NotifyChannel
 			_, err := s.ChannelMessageSend(channelID, "New clan member detected. Promoting "+user.Username)
 			if err != nil {

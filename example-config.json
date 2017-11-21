@@ -4,6 +4,5 @@
     "token": "",
     "inviteID": "",
     "roleIDs": [ ],
-    "dumpRoleIDs": false,
-    "debug": false
+    "dumpRoleIDs": false
 }

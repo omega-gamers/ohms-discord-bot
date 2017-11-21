@@ -16,6 +16,5 @@ type Configuration struct {
 	InviteID      string   `json:"inviteID"`
 	RoleIDs       []string `json:"roleIDs"`
 	DumpRoleIDs   bool     `json:"dumpRoleIDs"`
-	Debug         bool     `json:"debug"`
 	NotifyChannel string   `json:"notifyChannel"`
 }
