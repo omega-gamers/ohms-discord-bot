@@ -129,7 +129,10 @@ func processNewUsers(s *discordgo.Session, event *discordgo.GuildMemberAdd) {
 		updateInviteMetadata(config.ProjectID, guildID, im)
 
 		for _, roleID := range config.RoleIDs {
-			s.GuildMemberRoleAdd(guildID, userID, roleID)
+			err := s.GuildMemberRoleAdd(guildID, userID, roleID)
+			if err != nil {
+				log.Printf("Failed to promote user %v, due to: %v", user.Username, err)
+			}
 		}
 	}
 
