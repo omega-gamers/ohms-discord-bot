@@ -6,25 +6,31 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-func getInviteMetadata(inviteID string, discord *discordgo.Session) (im *InviteMetadata) {
-	invite, err := discord.Invite(inviteID)
+// getInviteMetadata returns the invite metadata object.
+func getInviteMetadata(inviteID string, channelID string, discord *discordgo.Session) (im *InviteMetadata) {
+	invites, err := discord.ChannelInvites(inviteID)
 	if err != nil {
 		log.Println("Failed to retrieve guild invite information.", err)
 		return
 	}
 
-	im = &InviteMetadata{
-		Uses:    invite.Uses,
-		Code:    invite.Code,
-		Guild:   invite.Guild.ID,
-		Channel: invite.Channel.ID,
+	for _, invite := range invites {
+		if invite.Code == inviteID {
+			im = &InviteMetadata{
+				Uses:    invite.Uses,
+				Code:    invite.Code,
+				Guild:   invite.Guild.ID,
+				Channel: invite.Channel.ID,
+			}
+		}
 	}
 
 	return
 }
 
-func dumpInviteMetadata(inviteID string, discord *discordgo.Session) {
-	im := getInviteMetadata(inviteID, discord)
+// dumpInviteMetadata handles dumping the invite metadata from discord.
+func dumpInviteMetadata(inviteID string, channelID string, discord *discordgo.Session) {
+	im := getInviteMetadata(inviteID, channelID, discord)
 
 	log.Printf("Invite metadata is: %v", im)
 }

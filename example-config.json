@@ -1,7 +1,8 @@
 {
-    "guildID": "",
-    "projectID": "",
-    "token": "",
-    "inviteID": "",
-    "roleIDs": [ ]
+    "guildID": "", // Your server's ID.
+    "channelID": "", // The channel that your watched invite is associated with.
+    "projectID": "", // GCP project ID.
+    "token": "", // Discord app token.
+    "inviteID": "", // Discord invite ID.
+    "roleIDs": [ ] // An array of role IDs to give a new discord user that uses the watched invite code.
 }

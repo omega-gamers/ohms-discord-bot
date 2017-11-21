@@ -59,12 +59,12 @@ func main() {
 	}
 
 	if dumpInvite {
-		dumpInviteMetadata(config.InviteID, bot)
+		dumpInviteMetadata(config.InviteID, config.ChannelID, bot)
 
 		return
 	}
 
-	im := getInviteMetadata(config.InviteID, bot)
+	im := getInviteMetadata(config.InviteID, config.ChannelID, bot)
 
 	projectID := config.ProjectID
 	guildID := config.GuildID
@@ -123,7 +123,7 @@ func processNewUsers(s *discordgo.Session, event *discordgo.GuildMemberAdd) {
 
 	projectID := config.ProjectID
 	guildID := config.GuildID
-	im := getInviteMetadata(config.InviteID, s)
+	im := getInviteMetadata(config.InviteID, config.ChannelID, s)
 	sim := getStoredInviteMetadata(projectID, guildID)
 	if hasInviteMetadataChanged(sim, im) {
 		user := event.Member.User
