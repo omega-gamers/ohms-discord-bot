@@ -3,6 +3,5 @@
     "projectID": "",
     "token": "",
     "inviteID": "",
-    "roleIDs": [ ],
-    "dumpRoleIDs": false
+    "roleIDs": [ ]
 }

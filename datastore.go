@@ -53,7 +53,7 @@ func hasInviteMetadataChanged(sim *InviteMetadata, im *InviteMetadata) bool {
 		log.Println("Invite has been used, stored data has changed")
 		return true
 	}
-
+	log.Println("Invite has not been used.")
 	return false
 }
 

@@ -19,8 +19,10 @@ func init() {
 
 // Global config object
 var (
-	config *Configuration
-	debug  bool
+	config      *Configuration
+	debug       bool
+	dumpInvite  bool
+	dumpRoleIDs bool
 )
 
 // configure is a helper function that reads in the external config file.
@@ -28,6 +30,8 @@ func configure() {
 	var configFile string
 	flag.StringVar(&configFile, "c", "/usr/local/etc/ohms-discord-bot.d/config.json", "Config file")
 	flag.BoolVar(&debug, "d", false, "Debug mode")
+	flag.BoolVar(&dumpInvite, "I", false, "Dumps the invite metadata from discord")
+	flag.BoolVar(&dumpRoleIDs, "R", false, "Dumps all role ids from the server")
 	flag.Parse()
 
 	if content, err := ioutil.ReadFile(configFile); err != nil {
@@ -48,8 +52,14 @@ func main() {
 		return
 	}
 
-	if config.DumpRoleIDs {
+	if dumpRoleIDs {
 		getRoleIDs(bot)
+
+		return
+	}
+
+	if dumpInvite {
+		dumpInviteMetadata(config.InviteID, bot)
 
 		return
 	}

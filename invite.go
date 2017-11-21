@@ -22,3 +22,9 @@ func getInviteMetadata(inviteID string, discord *discordgo.Session) (im *InviteM
 
 	return
 }
+
+func dumpInviteMetadata(inviteID string, discord *discordgo.Session) {
+	im := getInviteMetadata(inviteID, discord)
+
+	log.Printf("Invite metadata is: %v", im)
+}
