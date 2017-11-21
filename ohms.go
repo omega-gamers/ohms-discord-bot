@@ -28,6 +28,7 @@ func configure() {
 	var configFile string
 	flag.StringVar(&configFile, "c", "/usr/local/etc/ohms-discord-bot.d/config.json", "Config file")
 	flag.BoolVar(&debug, "d", false, "Debug mode")
+	flag.Parse()
 
 	if content, err := ioutil.ReadFile(configFile); err != nil {
 		log.Fatalf("Failed to load configuration file: %v. Terminating...", configFile)
