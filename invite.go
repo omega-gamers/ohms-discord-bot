@@ -8,7 +8,7 @@ import (
 
 // getInviteMetadata returns the invite metadata object.
 func getInviteMetadata(inviteID string, channelID string, discord *discordgo.Session) (im *InviteMetadata) {
-	invites, err := discord.ChannelInvites(inviteID)
+	invites, err := discord.ChannelInvites(channelID)
 	if err != nil {
 		log.Println("Failed to retrieve guild invite information.", err)
 		return
